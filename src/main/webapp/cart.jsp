@@ -1,0 +1,75 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart - Food Ordering</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+</head>
+<body>
+    <jsp:include page="WEB-INF/header.jsp" />
+
+    <div class="container">
+        <h2>YOUR CART</h2>
+
+        <c:if test="${not empty sessionScope.error}">
+            <div class="error">${sessionScope.error}</div>
+            <c:remove var="error" scope="session" />
+        </c:if>
+
+        <c:if test="${empty cartItems}">
+            <p>Your cart is empty.</p>
+            <a href="${pageContext.request.contextPath}/foods" class="btn">Browse Food</a>
+        </c:if>
+
+        <c:if test="${not empty cartItems}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Food</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Item Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="item" items="${cartItems}">
+                        <tr>
+                            <td>${item.foodItem.name}</td>
+                            <td>₹${item.foodItem.price}</td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/update-cart" method="post" style="display: flex; gap: 5px; align-items: center;">
+                                    <input type="hidden" name="foodId" value="${item.foodItem.id}">
+                                    <input type="number" name="quantity" value="${item.quantity}" min="0" style="width: 60px;">
+                                    <button type="submit" class="btn" style="padding: 5px 10px; background:#ffc107; color:#000;">Update</button>
+                                </form>
+                            </td>
+                            <td>₹${item.itemTotal}</td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/remove-from-cart" method="post">
+                                    <input type="hidden" name="foodId" value="${item.foodItem.id}">
+                                    <button type="submit" class="btn-danger" style="padding: 5px 10px;">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" style="text-align: right; font-weight: bold;">TOTAL</td>
+                        <td colspan="2" style="font-weight: bold; font-size: 18px;">₹${cartTotal}</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div style="margin-top: 20px; text-align: right; display: flex; justify-content: space-between;">
+                <a href="${pageContext.request.contextPath}/foods" class="btn" style="background: #6c757d;">Continue Shopping</a>
+                <form action="${pageContext.request.contextPath}/place-order" method="post">
+                    <button type="submit" style="font-size: 18px; padding: 10px 20px;">Place Order</button>
+                </form>
+            </div>
+        </c:if>
+    </div>
+</body>
+</html>
