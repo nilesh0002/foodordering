@@ -6,8 +6,8 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-# Build the WAR file
-RUN mvn clean package -DskipTests
+# Build the WAR file in batch mode to prevent CI hanging
+RUN mvn -B clean package -DskipTests
 
 # Stage 2: Deploy the WAR to Tomcat
 FROM tomcat:10.1-jdk17
