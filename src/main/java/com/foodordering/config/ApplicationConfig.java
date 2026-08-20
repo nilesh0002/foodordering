@@ -32,9 +32,9 @@ public class ApplicationConfig implements ServletContextListener {
 
         // --- SAMPLE DATA ---
         // Admin
-        userRepository.save(new User(userRepository.getNextId(), "Admin", "admin@food.com", "admin123", com.foodordering.model.Role.ADMIN));
+        userRepository.save(new com.foodordering.model.User(userRepository.getNextId(), "Admin", "admin@food.com", "admin123", com.foodordering.model.Role.ADMIN));
         // Customer
-        userRepository.save(new User(userRepository.getNextId(), "Customer", "customer@food.com", "customer123", com.foodordering.model.Role.CUSTOMER));
+        userRepository.save(new com.foodordering.model.User(userRepository.getNextId(), "Customer", "customer@food.com", "customer123", com.foodordering.model.Role.CUSTOMER));
 
         // Foods
         foodRepository.save(new com.foodordering.model.FoodItem(foodRepository.getNextId(), "Margherita Pizza", "Classic cheese pizza", "PIZZA", 199.00, true));
