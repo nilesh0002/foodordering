@@ -12,11 +12,11 @@
     <div class="container">
         <h2>Menu</h2>
         
-        <form class="search-box" action="${pageContext.request.contextPath}/foods" method="get">
+        <form class="search-box flex-between" action="${pageContext.request.contextPath}/foods" method="get" style="gap: 15px; margin-bottom: 30px;">
             <input type="text" name="search" placeholder="Search by name or category..." value="${searchKeyword}">
             <button type="submit">Search</button>
             <c:if test="${not empty searchKeyword}">
-                <a href="${pageContext.request.contextPath}/foods" class="btn" style="background:#6c757d;">Clear</a>
+                <a href="${pageContext.request.contextPath}/foods" class="btn btn-secondary">Clear</a>
             </c:if>
         </form>
 
@@ -32,17 +32,17 @@
                     <p><em>${food.category}</em></p>
                     <div class="price">₹${food.price}</div>
                     
-                    <div style="margin-top: 15px;">
-                        <a href="${pageContext.request.contextPath}/food-details?id=${food.id}" class="btn" style="background:#17a2b8;">View Details</a>
+                    <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+                        <a href="${pageContext.request.contextPath}/food-details?id=${food.id}" class="btn btn-secondary">View Details</a>
                         
                         <c:if test="${food.available}">
-                            <form action="${pageContext.request.contextPath}/add-to-cart" method="post" style="display:inline-block; margin-top: 10px;">
+                            <form action="${pageContext.request.contextPath}/add-to-cart" method="post" style="display:inline-block;">
                                 <input type="hidden" name="foodId" value="${food.id}">
-                                <button type="submit">Add to Cart</button>
+                                <button type="submit" style="width: 100%;">Add to Cart</button>
                             </form>
                         </c:if>
                         <c:if test="${not food.available}">
-                            <p style="color:red; margin-top:10px;">Currently unavailable</p>
+                            <p style="color:var(--danger-color); margin-top:10px; font-weight: bold;">Currently unavailable</p>
                         </c:if>
                     </div>
                 </div>

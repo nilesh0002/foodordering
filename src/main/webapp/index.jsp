@@ -34,11 +34,11 @@
         </nav>
     </header>
     
-    <div class="container" style="text-align: center; margin-top: 50px;">
+    <div class="container hero">
         <h2>FOOD ORDERING SYSTEM</h2>
-        <p>Delicious food, simple ordering.</p>
+        <p>Experience the future of dining with our sleek, state-of-the-art ordering platform.</p>
         <br>
-        <a href="${pageContext.request.contextPath}/foods" class="btn">Browse Food</a>
+        <a href="${pageContext.request.contextPath}/foods" class="btn">Browse Premium Menu</a>
     </div>
 </body>
 </html>

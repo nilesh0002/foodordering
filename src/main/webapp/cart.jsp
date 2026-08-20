@@ -39,17 +39,17 @@
                             <td>${item.foodItem.name}</td>
                             <td>₹${item.foodItem.price}</td>
                             <td>
-                                <form action="${pageContext.request.contextPath}/update-cart" method="post" style="display: flex; gap: 5px; align-items: center;">
+                                <form action="${pageContext.request.contextPath}/update-cart" method="post" style="display: flex; gap: 10px; align-items: center; flex-direction: row;">
                                     <input type="hidden" name="foodId" value="${item.foodItem.id}">
-                                    <input type="number" name="quantity" value="${item.quantity}" min="0" style="width: 60px;">
-                                    <button type="submit" class="btn" style="padding: 5px 10px; background:#ffc107; color:#000;">Update</button>
+                                    <input type="number" name="quantity" value="${item.quantity}" min="0" style="width: 80px; text-align: center;">
+                                    <button type="submit" class="btn btn-secondary" style="padding: 10px 15px;">Update</button>
                                 </form>
                             </td>
-                            <td>₹${item.itemTotal}</td>
+                            <td style="font-weight: bold; color: var(--primary-color);">₹${item.itemTotal}</td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/remove-from-cart" method="post">
                                     <input type="hidden" name="foodId" value="${item.foodItem.id}">
-                                    <button type="submit" class="btn-danger" style="padding: 5px 10px;">Remove</button>
+                                    <button type="submit" class="btn-danger" style="padding: 10px 15px;">Remove</button>
                                 </form>
                             </td>
                         </tr>
@@ -57,14 +57,14 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3" style="text-align: right; font-weight: bold;">TOTAL</td>
-                        <td colspan="2" style="font-weight: bold; font-size: 18px;">₹${cartTotal}</td>
+                        <td colspan="3" style="text-align: right; font-weight: 800; color: var(--text-muted);">TOTAL</td>
+                        <td colspan="2" style="font-weight: 800; font-size: 22px; color: var(--primary-color);">₹${cartTotal}</td>
                     </tr>
                 </tfoot>
             </table>
 
-            <div style="margin-top: 20px; text-align: right; display: flex; justify-content: space-between;">
-                <a href="${pageContext.request.contextPath}/foods" class="btn" style="background: #6c757d;">Continue Shopping</a>
+            <div style="margin-top: 30px; text-align: right; display: flex; justify-content: space-between; align-items: center;">
+                <a href="${pageContext.request.contextPath}/foods" class="btn btn-secondary">Continue Shopping</a>
                 <form action="${pageContext.request.contextPath}/place-order" method="post">
                     <button type="submit" style="font-size: 18px; padding: 10px 20px;">Place Order</button>
                 </form>
